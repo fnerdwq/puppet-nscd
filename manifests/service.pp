@@ -2,8 +2,8 @@
 class nscd::service {
 
   case $nscd::service {
-    'running', true:  { $nscd_service = true  }
-    'stopped', false: { $nscd_service = false }
+    /running|true/, true:   { $nscd_service = true  }
+    /stopped|false/, false: { $nscd_service = false }
     default: { fail('no valid value for $nscd::ensure') }
   }
 
