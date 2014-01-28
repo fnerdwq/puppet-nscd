@@ -35,8 +35,6 @@ class nscd (
 
   # Parmeter check
   validate_string($ensure)
-  validate_re($service, '^(true|false|running|stopped)$')
-
 
   contain 'nscd::install'
 
