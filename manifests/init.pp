@@ -29,7 +29,10 @@ class nscd (
 
   # TODO: Parmeter check
 
-  class {'nscd::install': }
-  ~> class {'nscd::service': }
+  contain 'nscd::install'
+  contain 'nscd::service'
+
+  Class['nscd::install']
+  ~> Class['nscd::service']
 
 }
