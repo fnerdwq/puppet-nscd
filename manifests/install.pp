@@ -2,7 +2,7 @@
 class nscd::install {
 
   package { 'nscd':
-    ensure => present,
+    ensure => $nscd::ensure,
     name   => $nscd::params::package,
   }
 

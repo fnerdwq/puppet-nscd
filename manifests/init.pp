@@ -5,9 +5,14 @@
 # This works on Debian and RedHat like systems.
 # Puppet Version >= 3.4.0
 #
-# === Paramters
+# === Parameters
 #
-# TODO
+# [*ensure*]
+#   Should we install nscd at all, takes all valid ensure values for the
+#   package provide, default: installed
+#
+# [*service*]
+#   Should the nscd service be running, default: running
 #
 # === Examples
 #
@@ -22,17 +27,24 @@
 # Copyright 2014 Frederik Wagner
 #
 class nscd (
-  $ensure       = 'running',
+  $ensure  = 'installed',
+  $service = 'running',
 ) {
 
   include nscd::params
 
-  # TODO: Parmeter check
+  # Parmeter check
+  validate_string($ensure)
+  validate_re($service, '^(true|false|running|stopped)$')
+
 
   contain 'nscd::install'
-  contain 'nscd::service'
 
-  Class['nscd::install']
-  ~> Class['nscd::service']
+  if ! $ensure =~ /^(absent|purged)$/ {
+    contain 'nscd::service'
+
+    Class['nscd::install']
+    ~> Class['nscd::service']
+  }
 
 }

@@ -63,4 +63,6 @@ Puppet Version >= 3.4.0, due to specific hiera usage.
 
 ##TODOs:
 
-* Make it work on RedHat like systems.
+* make it work on RedHat like systems.
+* make it configureble
+* make it work with puppet pre 3.4 

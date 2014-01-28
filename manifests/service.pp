@@ -1,15 +1,15 @@
 # Manages the nscd service (private)
 class nscd::service {
 
-  case $nscd::ensure {
-    'running', true:  { $nscd_ensure = true  }
-    'stopped', false: { $nscd_ensure = false }
+  case $nscd::service {
+    'running', true:  { $nscd_service = true  }
+    'stopped', false: { $nscd_service = false }
     default: { fail('no valid value for $nscd::ensure') }
   }
 
   service {'nscd':
-    ensure     => $nscd_ensure,
-    enable     => $nscd_ensure,
+    ensure     => $nscd_service,
+    enable     => $nscd_service,
     hasrestart => true,
     hasstatus  => true,
   }
