@@ -38,7 +38,7 @@ class nscd (
 
   contain 'nscd::install'
 
-  if ! $ensure =~ /^(absent|purged)$/ {
+  if $ensure !~ /^(absent|purged)$/ {
     contain 'nscd::service'
 
     Class['nscd::install']
