@@ -48,7 +48,7 @@ Configure it through hiera or declare it resource-like with the parameters set, 
 
 ```puppet
 class { 'nscd':
-  ...
+  service => 'stopped',
 }
 ```
 
@@ -58,11 +58,11 @@ Debian like systems.
 Tested on:
 
 * Debian 7
+* CentOs 6
 
 Puppet Version >= 3.4.0, due to specific hiera usage.
 
 ##TODOs:
 
 * make it work on RedHat like systems.
-* make it configureble
 * make it work with puppet pre 3.4 
